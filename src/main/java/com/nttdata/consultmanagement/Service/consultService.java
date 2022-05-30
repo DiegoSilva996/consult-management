@@ -1,14 +1,17 @@
 package com.nttdata.consultmanagement.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.nttdata.consultmanagement.Dto.ProductDto;
 import com.nttdata.consultmanagement.Model.Product;
 import com.nttdata.consultmanagement.Model.Transaction;
 import com.nttdata.consultmanagement.Repository.customerRepository;
 import com.nttdata.consultmanagement.Repository.productRepository;
 import com.nttdata.consultmanagement.Repository.transactionRepository;
+import com.nttdata.consultmanagement.Util.AppUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +44,13 @@ public class consultService {
       //Obtener transacciones en la fecha
       List<Transaction> trans = transactionRepository.findByIdProduct(id).stream().limit(10).collect(Collectors.toList());
       return Flux.fromIterable(trans);
+    }  
+
+    public Mono<ProductDto> balanceByDebitCard(String id){    
+      Mono <Product> product =  productRepository.findById(id);
+      Product aux = (Product) product.map(value -> { return value; }).subscribe();
+      String idMainAccount = aux.getAssociatedAccounts().get(0);
+      return productRepository.findById(idMainAccount).map(AppUtils::productEntitytoDto);
     }
     
 }

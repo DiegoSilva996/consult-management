@@ -3,8 +3,10 @@ package com.nttdata.consultmanagement.Controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
+import com.nttdata.consultmanagement.Dto.ProductDto;
 import com.nttdata.consultmanagement.Model.Product;
 import com.nttdata.consultmanagement.Model.Transaction;
 import com.nttdata.consultmanagement.Service.consultService;
@@ -55,6 +57,11 @@ public class consultController {
 		return service.reportLastTentransactions(id);
 	}	
 
-
+	//Consultar el saldo de la cuenta principal asociada a la tarjeta de débito
+	@GetMapping("/balanceByDebitCard")
+	public Mono<ProductDto> balanceByDebitCard(@RequestParam String id ){
+		//Consultar servicio	
+		return service.balanceByDebitCard(id);
+	}	
     
 }

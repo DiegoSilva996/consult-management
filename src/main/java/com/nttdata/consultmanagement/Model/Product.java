@@ -31,4 +31,6 @@ public class Product {
     private String status;
     private List<String> owners;
     private List<String> authorizedSigner;
+    //Lista en posición 0 será la cuenta principal
+    private List<String> associatedAccounts;
 }
