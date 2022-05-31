@@ -144,6 +144,7 @@ public class ConsultServiceTest {
             .authorizedSigner(null)
             .associatedAccounts(accountsId)
             .build();
+        debitCard = pro3;
 
         productList.add(pro1);
         productList.add(pro2);
@@ -180,7 +181,9 @@ public class ConsultServiceTest {
     @Test
 	void balanceByDebitCardTest() {
 		String id = "3";
-		when(transRepo.findByIdProduct(id)).thenReturn((transList));
-		assertNotNull(conService.reportLastTentransactions(id));
+        String idMainAcount = "2";
+		when(proRepo.findById(id)).thenReturn(Mono.just(debitCard));
+        when(proRepo.findById(idMainAcount)).thenReturn(Mono.just(productExample));
+		assertNotNull(conService.balanceByDebitCard(id));
 	}
 }

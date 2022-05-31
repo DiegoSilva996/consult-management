@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import com.nttdata.consultmanagement.Dto.ProductDto;
 import com.nttdata.consultmanagement.Model.Product;
 import com.nttdata.consultmanagement.Model.Transaction;
-import com.nttdata.consultmanagement.Repository.customerRepository;
 import com.nttdata.consultmanagement.Repository.productRepository;
 import com.nttdata.consultmanagement.Repository.transactionRepository;
 import com.nttdata.consultmanagement.Util.AppUtils;
@@ -22,8 +21,6 @@ import reactor.core.publisher.Mono;
 public class consultService {
     @Autowired
     private productRepository productRepository;
-    @Autowired
-    private customerRepository customerRepository;
     @Autowired
     private transactionRepository transactionRepository; 
 
