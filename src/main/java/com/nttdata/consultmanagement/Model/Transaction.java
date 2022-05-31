@@ -29,4 +29,5 @@ public class Transaction {
     private String transactionType;
     private String status;
     private Double newDailyBalance;
+    private String idCustomer;
 }

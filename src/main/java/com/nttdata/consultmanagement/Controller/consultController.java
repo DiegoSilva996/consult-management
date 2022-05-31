@@ -32,7 +32,7 @@ public class consultController {
 
     //Permitir elaborar un resumen consolidado de un cliente con todos los productos que pueda tener en el banco.
     @GetMapping("/reportProductsByCustomer")
-	public Mono<Product> reportProductsByCustomer(@RequestParam String id){
+	public Flux<Product> reportProductsByCustomer(@RequestParam String id){
 		return service.productsByCustomer(id);
 	}
 

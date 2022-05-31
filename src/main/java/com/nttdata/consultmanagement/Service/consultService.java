@@ -27,9 +27,8 @@ public class consultService {
     @Autowired
     private transactionRepository transactionRepository; 
 
-    public Mono<Product> productsByCustomer(String id){      
-      return customerRepository.findById(id)
-      .flatMap(p->productRepository.findByCustomerId(id));
+    public Flux<Product> productsByCustomer(String id){      
+      return productRepository.findByCustomerId(id);
     }
    
     public Flux<Transaction> reportByProductandDateRange(String id, Date dateA, Date dateB){ 
