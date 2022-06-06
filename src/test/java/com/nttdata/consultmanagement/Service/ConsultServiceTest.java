@@ -174,7 +174,7 @@ public class ConsultServiceTest {
 	@Test
 	void reportLastTentransactionsTest() {
 		String id = "628296562738d249c56a5fe0";
-		when(transRepo.findByIdProduct(id)).thenReturn((transList));
+		when(transRepo.findByIdProduct(id)).thenReturn((Flux.fromIterable(transList)));
 		assertNotNull(conService.reportLastTentransactions(id));
 	}
 

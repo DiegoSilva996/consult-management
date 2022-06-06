@@ -2,7 +2,6 @@ package com.nttdata.consultmanagement.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.nttdata.consultmanagement.Dto.ProductDto;
 import com.nttdata.consultmanagement.Model.Product;
@@ -37,7 +36,7 @@ public class consultService {
 
     public Flux<Transaction> reportLastTentransactions(String id){ 
       //Obtener transacciones en la fecha
-      List<Transaction> trans = transactionRepository.findByIdProduct(id).stream().limit(10).collect(Collectors.toList());
+      List<Transaction> trans = transactionRepository.findByIdProduct(id).collectList().block() ;
       return Flux.fromIterable(trans);
     }  
 

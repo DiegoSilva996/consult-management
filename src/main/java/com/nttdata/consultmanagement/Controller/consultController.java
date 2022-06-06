@@ -13,6 +13,7 @@ import com.nttdata.consultmanagement.Service.consultService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +32,8 @@ public class consultController {
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH); 
 
     //Permitir elaborar un resumen consolidado de un cliente con todos los productos que pueda tener en el banco.
-    @GetMapping("/reportProductsByCustomer")
-	public Flux<Product> reportProductsByCustomer(@RequestParam String id){
+    @GetMapping("/reportProductsByCustomer/{id}")
+	public Flux<Product> reportProductsByCustomer(@PathVariable("id") String id){
 		return service.productsByCustomer(id);
 	}
 
@@ -50,15 +51,15 @@ public class consultController {
 	}
 
 	//Implementar un reporte con los últimos 10 movimientos de la tarjeta de débito y de crédito
-	@GetMapping("/reportLastTentransactions")
-	public Flux<Transaction> reportLastTentransactions(@RequestParam String id ){
+	@GetMapping("/reportLastTentransactions/{id}")
+	public Flux<Transaction> reportLastTentransactions(@PathVariable("id") String id ){
 		//Consultar servicio	
 		return service.reportLastTentransactions(id);
 	}	
 
 	//Consultar el saldo de la cuenta principal asociada a la tarjeta de débito
-	@GetMapping("/balanceByDebitCard")
-	public Mono<ProductDto> balanceByDebitCard(@RequestParam String id ){
+	@GetMapping("/balanceByDebitCard/{id}")
+	public Mono<ProductDto> balanceByDebitCard(@PathVariable("id") String id ){
 		//Consultar servicio	
 		return service.balanceByDebitCard(id);
 	}	
